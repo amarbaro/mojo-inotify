@@ -34,6 +34,7 @@ for s in tests/scenarios/*.txt; do
   echo "oracle: $name identical ($(grep -c . ".work/run/$name.impl.1/out") lines, 2 runs each)"
   n=$((n + 1))
 done
+rm -rf .work/api .work/quick
 $M run -I src tests/api.mojo || { echo "FAIL api: tests/api.mojo"; exit 1; }
 $M run -I src examples/quickstart.mojo > /dev/null || { echo "FAIL example: examples/quickstart.mojo"; exit 1; }
 echo "PASS all"
