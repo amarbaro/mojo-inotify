@@ -1,0 +1,7 @@
+[project]
+name = "mojo-inotify"
+version = "0.1.0"
+description = "Watch files and directories from Mojo with Linux inotify, pollable"
+license = "Apache-2.0"
+requires-python = ">=3.11,<3.15"
+dependencies = ["mojo>=1.1.0,<1.2"]
