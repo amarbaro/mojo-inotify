@@ -1,0 +1,7 @@
+mkdir w
+watch w ALL
+touch w/a
+unwatch w
+touch w/b
+mv w/b w/c
+drain

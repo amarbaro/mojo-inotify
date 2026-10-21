@@ -1,0 +1,10 @@
+mkdir w
+watch w CREATE
+poll 0
+poll 20
+touch w/a
+poll 0
+poll 1000
+drain
+poll 0
+drain

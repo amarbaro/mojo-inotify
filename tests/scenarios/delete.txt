@@ -1,0 +1,11 @@
+mkdir w
+mkdir w/d
+touch w/f
+watch w ALL
+watch w/d ALL
+watch w/f ALL
+rm w/f
+rmdir w/d
+drain
+rmdir w
+drain

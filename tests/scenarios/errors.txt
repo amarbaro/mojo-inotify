@@ -1,0 +1,5 @@
+watch nosuch CREATE
+mkdir w
+watch w 0
+watch w CREATE
+drain

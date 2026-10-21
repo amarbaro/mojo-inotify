@@ -1,0 +1,4 @@
+mkdir w
+watch w CREATE|CLOSE_WRITE
+burst 1000 w/f
+drain

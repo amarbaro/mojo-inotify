@@ -1,0 +1,11 @@
+mkdir a
+mkdir b
+watch a ALL
+watch b ALL
+touch a/f
+mv a/f a/g
+mv a/g b/g
+mkdir a/sub
+mv a/sub b/sub
+mv b c
+drain

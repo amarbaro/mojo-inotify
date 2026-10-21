@@ -1,0 +1,9 @@
+mkdir w
+watch w ALL
+touch w/f
+drain
+write w/f a b c
+write w/f hello
+append w/f more
+chmod w/f
+drain

@@ -1,0 +1,5 @@
+mkdir w
+watch w CREATE
+ladder 255 w
+touch w/é日本語
+drain

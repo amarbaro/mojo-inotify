@@ -1,0 +1,8 @@
+mkdir w
+touch w/f
+watch w CLOSE_WRITE|CLOSE_NOWRITE|OPEN|ACCESS
+watch w/f OPEN|ACCESS|MODIFY|CLOSE_NOWRITE|CLOSE_WRITE
+cat w/f
+write w/f x
+touch w/g
+drain

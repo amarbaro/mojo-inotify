@@ -1,0 +1,8 @@
+mkdir w
+watch w ALL
+touch w/a
+mkdir w/d
+touch w/d/inner
+write w/e x
+drain
+drain
