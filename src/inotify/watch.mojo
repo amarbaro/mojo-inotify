@@ -133,9 +133,9 @@ struct Inotify(Movable):
     def next(mut self, mut ev: Event) raises -> Bool:
         """Point ev at the next event; False when none is queued. Never blocks."""
         if self.pos >= self.len:
-            var n = Int(external_call["read", c_ssize_t](Int(self.fdn), self.buf.unsafe_ptr(), self.cap))
+            var n = Int(external_call["__read", c_ssize_t](Int(self.fdn), self.buf.unsafe_ptr(), self.cap))
             while n < 0 and _errno() == _EINTR:
-                n = Int(external_call["read", c_ssize_t](Int(self.fdn), self.buf.unsafe_ptr(), self.cap))
+                n = Int(external_call["__read", c_ssize_t](Int(self.fdn), self.buf.unsafe_ptr(), self.cap))
             if n < 0:
                 if _errno() == _EAGAIN:
                     return False

@@ -78,12 +78,12 @@ def main() raises:
         elif op == "cat":
             var fd = _open(String(a[1]), 0)
             var b = Int64(0)
-            _ = external_call["read", Int](Int(fd), Pointer(to=b), 8)
+            _ = external_call["__read", Int](Int(fd), Pointer(to=b), 8)
             _ = external_call["close", Int32](fd)
         elif op == "write" or op == "append":
             var fd = _open(String(a[1]), Int32(0o2101) if op == "append" else Int32(0o1101))
             for i in range(2, len(a)):
-                _ = external_call["write", Int](Int(fd), a[i].unsafe_ptr(), a[i].byte_length())
+                _ = external_call["__write", Int](Int(fd), a[i].unsafe_ptr(), a[i].byte_length())
             _ = external_call["close", Int32](fd)
         elif op == "burst":
             for i in range(atol(a[1])):
