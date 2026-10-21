@@ -1,5 +1,7 @@
 # mojo-inotify
 
+[![CI](https://github.com/amarbaro/mojo-inotify/actions/workflows/ci.yml/badge.svg)](https://github.com/amarbaro/mojo-inotify/actions/workflows/ci.yml)
+
 Watch files and directories from Mojo with Linux inotify. One read buffer, events read in
 place, a file descriptor you can `poll`. Its event streams are checked against a Python
 `ctypes` oracle on the same inotify calls, and it drains events 3.3× faster than Python.
