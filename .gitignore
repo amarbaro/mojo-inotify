@@ -1,4 +1,2 @@
 .venv*
 .work/
-*.db
-*.db-*

@@ -47,7 +47,8 @@ def main() raises:
 
     touch(d + "/a")
     assert_true(ino.wait(0))
-    assert_true(ino.wait(0))  # waiting twice does not consume
+    assert_true(ino.wait(-1))  # events queued: -1 returns at once
+    assert_true(ino.wait(0))  # waiting does not consume
     assert_true(ino.next(ev))
     assert_equal(ev.wd(), wd)
     assert_equal(ev.mask(), IN_CREATE)
