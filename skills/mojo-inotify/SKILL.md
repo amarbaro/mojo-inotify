@@ -5,7 +5,7 @@ description: "Watch files and directories from Mojo with inotify: add_watch, wai
 
 # mojo-inotify
 
-inotify for Mojo 1.1 on Linux, straight to libc. Event streams are checked against a Python
+inotify for Mojo 1.2 on Linux, straight to libc. Event streams are checked against a Python
 `ctypes` oracle.
 
 ## Install
