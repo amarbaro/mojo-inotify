@@ -1,6 +1,9 @@
 # mojo-inotify
 
-[![CI](https://github.com/amarbaro/mojo-inotify/actions/workflows/ci.yml/badge.svg)](https://github.com/amarbaro/mojo-inotify/actions/workflows/ci.yml)
+<!-- badges -->
+[![ci](https://github.com/amarbaro/mojo-inotify/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/amarbaro/mojo-inotify/actions/workflows/ci.yml) [![latest release](https://img.shields.io/github/v/release/amarbaro/mojo-inotify)](https://github.com/amarbaro/mojo-inotify/releases/latest) [![license](https://img.shields.io/github/license/amarbaro/mojo-inotify)](https://github.com/amarbaro/mojo-inotify/blob/main/LICENSE)
+<!-- /badges -->
+
 
 Watch files and directories from Mojo with Linux inotify. One read buffer, events read in
 place, a file descriptor you can `poll`. Its event streams are checked against a Python
