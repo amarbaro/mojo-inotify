@@ -37,4 +37,5 @@ done
 rm -rf .work/api .work/quick
 $M run -I src tests/api.mojo || { echo "FAIL api: tests/api.mojo"; exit 1; }
 $M run -I src examples/quickstart.mojo > /dev/null || { echo "FAIL example: examples/quickstart.mojo"; exit 1; }
+$M precompile src/inotify -o .work/inotify.mojoc 2>.work/build.err || { echo "FAIL precompile: src/inotify"; cat .work/build.err; exit 1; }
 echo "PASS all"

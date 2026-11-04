@@ -33,6 +33,13 @@ comptime _HEADER = 16  # struct inotify_event before the name
 comptime MIN_BUFFER = 16 + 255 + 1  # one event with the longest name
 
 
+# Declared first on purpose: `mojo precompile` fails with "recursive reference to CStringSpan.__init__" when
+# the first use of StringSlice(unsafe_from_utf8=...) (below) comes before any use of as_c_string_span.
+def _watch(fd: Int32, path: String, mask: UInt32) -> Int32:
+    var p = path
+    return external_call["inotify_add_watch", Int32](fd, p.as_c_string_span().ptr(), mask)
+
+
 def _errno() -> Int:
     return Int(external_call["__errno_location", Pointer[Int32, MutAnyOrigin]]()[])
 
@@ -107,8 +114,7 @@ struct Inotify(Movable):
 
     def add_watch(self, path: String, mask: UInt32) raises -> Int32:
         """Watch path for mask. Watching a path again updates its mask and returns the same wd."""
-        var p = path
-        var wd = external_call["inotify_add_watch", Int32](self.fdn, p.as_c_string_span().ptr(), mask)
+        var wd = _watch(self.fdn, path, mask)
         if wd < 0:
             raise _error("add_watch '" + path + "'")
         return wd
