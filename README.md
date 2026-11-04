@@ -4,32 +4,31 @@
 [![ci](https://github.com/amarbaro/mojo-inotify/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/amarbaro/mojo-inotify/actions/workflows/ci.yml) [![latest release](https://img.shields.io/github/v/release/amarbaro/mojo-inotify)](https://github.com/amarbaro/mojo-inotify/releases/latest) [![license](https://img.shields.io/github/license/amarbaro/mojo-inotify)](https://github.com/amarbaro/mojo-inotify/blob/main/LICENSE)
 <!-- /badges -->
 
+<!-- install -->
+Install: `pixi add mojo-inotify` once published. For now: `git clone https://github.com/amarbaro/mojo-inotify`, then `mojo run -I mojo-inotify/src app.mojo`.
+
+```mojo
+from std.os import remove
+from inotify import Inotify, Event, IN_CREATE, IN_DELETE
+
+
+def main() raises:
+    var ino = Inotify()
+    _ = ino.add_watch(".", IN_CREATE | IN_DELETE)  # the current directory
+    with open("quickstart.tmp", "w") as f:
+        f.write("hi")
+    remove("quickstart.tmp")
+    var ev = Event()
+    while ino.wait(100) and ino.next(ev):
+        print("created" if ev.mask() & IN_CREATE != 0 else "deleted", ev.name())
+```
+<!-- /install -->
 
 Watch files and directories from Mojo with Linux inotify. One read buffer, events read in
 place, a file descriptor you can `poll`. Its event streams are checked against a Python
 `ctypes` oracle on the same inotify calls, and it drains events 3.3× faster than Python.
 
-```mojo
-from inotify import Inotify, Event, IN_CREATE, IN_DELETE
-
-def main() raises:
-    var ino = Inotify()
-    _ = ino.add_watch("/tmp/inbox", IN_CREATE | IN_DELETE)
-    var ev = Event()
-    while ino.wait(-1):          # block until something happens
-        while ino.next(ev):      # then take everything queued
-            print(ev.name(), ev.mask())
-```
-
-## Install
-
 Requires Mojo 1.2 on Linux. The calls go straight to libc, so no linker flags.
-
-| Way | Command |
-|---|---|
-| Source path | `mojo run -I path/to/mojo-inotify/src app.mojo` |
-| Precompiled | `mojo precompile src/inotify -o inotify.mojoc`, then put it next to your code |
-| Vendor | copy `src/inotify/` into your project |
 
 ## What you get
 
