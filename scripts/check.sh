@@ -7,7 +7,7 @@ set -euo pipefail
 cd "$(dirname "$0")/.."
 ROOT=$PWD
 mkdir -p .work
-M=.venv/bin/mojo
+M=${MOJO:-.venv/bin/mojo}
 command -v python3 >/dev/null || { echo "FAIL setup: python3 (the oracle) not found"; exit 1; }
 CASES=${CASES:-.work/cases}
 if [[ $CASES == .work/cases ]]; then

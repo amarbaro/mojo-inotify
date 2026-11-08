@@ -4,6 +4,10 @@ set -euo pipefail
 cd "$(dirname "$0")/.."
 command -v uv >/dev/null || { echo "FAIL setup: uv not installed"; exit 1; }
 [[ -r /proc/sys/fs/inotify/max_user_watches ]] || { echo "FAIL setup: no inotify in this kernel"; exit 1; }
-uv sync || { echo "FAIL setup: uv sync"; exit 1; }
+if [ -z "${MOJO:-}" ]; then
+  uv sync || { echo "FAIL setup: uv sync"; exit 1; }
+  MOJO=.venv/bin/mojo
+fi
+export MOJO
 python3 -c 'import platform; print("oracle python", platform.python_version())'
 scripts/check.sh
