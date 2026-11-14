@@ -1,0 +1,4 @@
+name = "mojo-inotify"
+version = "0.1.5"
+description = "Watch files and directories from Mojo with Linux inotify, pollable"
+tags = ["mojo", "linux", "filesystem", "watch"]
